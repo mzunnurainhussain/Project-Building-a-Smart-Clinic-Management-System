@@ -1,6 +1,8 @@
 package com.project_back_end.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,6 +20,8 @@ public class Appointment {
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
+    @NotNull
+    @Future
     @Column(name = "appointment_time", nullable = false)
     private LocalDateTime appointmentTime;
 
