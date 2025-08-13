@@ -1,0 +1,104 @@
+Admin Stories
+1️⃣ Title: Admin can add a new doctor
+Description (User Story)
+As an Admin, I want to add new doctors to the system so that they can appear in search results and accept appointments.
+
+Acceptance Criteria
+
+Admin can open “Add Doctor” form from the dashboard.
+
+Form includes fields: Name, Specialty, Email, Phone.
+
+On save, doctor appears in doctor list instantly.
+
+2️⃣ Title: Admin can view all users and roles
+Description (User Story)
+As an Admin, I want to view all system users with their roles so that I can manage permissions.
+
+Acceptance Criteria
+
+List shows Username, Email, Role(s).
+
+Pagination available for >20 records.
+
+Clicking a user opens their profile details.
+
+3️⃣ Title: Admin can remove a doctor
+Description (User Story)
+As an Admin, I want to remove doctors from the system so that they are no longer bookable for appointments.
+
+Acceptance Criteria
+
+Remove option visible on each doctor entry.
+
+Confirmation dialog before deletion.
+
+Deleted doctor no longer appears in patient search.
+
+Doctor Stories
+4️⃣ Title: Doctor can view upcoming appointments
+Description (User Story)
+As a Doctor, I want to see my upcoming appointments so that I can prepare for patient visits.
+
+Acceptance Criteria
+
+List shows Patient Name, Date/Time, Appointment Notes.
+
+Sorted by date ascending.
+
+Accessible from doctor dashboard.
+
+5️⃣ Title: Doctor can update appointment status
+Description (User Story)
+As a Doctor, I want to mark appointments as Completed or Cancelled so that patient records are accurate.
+
+Acceptance Criteria
+
+Status options: BOOKED, COMPLETED, CANCELLED.
+
+Updated status reflects in patient’s portal.
+
+6️⃣ Title: Doctor can issue prescriptions
+Description (User Story)
+As a Doctor, I want to create prescriptions for patients so that they can follow my medical advice after consultation.
+
+Acceptance Criteria
+
+Prescription form includes Medicine, Dosage, Instructions.
+
+Saved prescriptions are linked to specific appointments.
+
+Patient Stories
+7️⃣ Title: Patient can search doctors by specialty
+Description (User Story)
+As a Patient, I want to search for doctors by specialty so that I can find the right doctor for my needs.
+
+Acceptance Criteria
+
+Search bar allows filtering by specialty.
+
+Results show Name, Specialty, and Next Available Time.
+
+8️⃣ Title: Patient can book an appointment
+Description (User Story)
+As a Patient, I want to book an appointment with a doctor so that I can receive medical care.
+
+Acceptance Criteria
+
+Booking form includes Date, Time, and Notes.
+
+Confirmation message shown after booking.
+
+Appointment appears in both patient and doctor dashboards.
+
+9️⃣ Title: Patient can cancel an appointment
+Description (User Story)
+As a Patient, I want to cancel an appointment so that I can free up my schedule and avoid no-shows.
+
+Acceptance Criteria
+
+Cancel option visible in appointment list.
+
+Confirmation dialog shown before canceling.
+
+Appointment removed from doctor’s upcoming list.
