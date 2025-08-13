@@ -1,0 +1,74 @@
+# Smart Clinic Management System — Database Schema (MySQL)
+
+## Entities
+- **users** (auth), **roles**, **user_roles** (M:N)
+- **doctors**, **patients**
+- **appointments**
+- **prescriptions**
+
+## ER Notes
+- A `patient` books many `appointments`; each `appointment` belongs to exactly one `doctor`.
+- A `doctor` writes many `prescriptions` for a specific `appointment`.
+- Authentication/authorization via `users` + `roles`.
+
+## DDL (MySQL)
+```sql
+CREATE TABLE users (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(80) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  email VARCHAR(120) UNIQUE,
+  enabled BOOLEAN NOT NULL DEFAULT TRUE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE roles (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(40) UNIQUE NOT NULL
+);
+
+CREATE TABLE user_roles (
+  user_id BIGINT NOT NULL,
+  role_id BIGINT NOT NULL,
+  PRIMARY KEY (user_id, role_id),
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (role_id) REFERENCES roles(id)
+);
+
+CREATE TABLE doctors (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(120) NOT NULL,
+  specialty VARCHAR(80) NOT NULL,
+  email VARCHAR(120) UNIQUE,
+  phone VARCHAR(30)
+);
+
+CREATE TABLE patients (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(120) NOT NULL,
+  email VARCHAR(120) UNIQUE,
+  phone VARCHAR(30),
+  dob DATE
+);
+
+CREATE TABLE appointments (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  doctor_id BIGINT NOT NULL,
+  patient_id BIGINT NOT NULL,
+  appointment_time DATETIME NOT NULL,
+  status ENUM('BOOKED','CANCELLED','COMPLETED') DEFAULT 'BOOKED',
+  notes VARCHAR(500),
+  FOREIGN KEY (doctor_id) REFERENCES doctors(id),
+  FOREIGN KEY (patient_id) REFERENCES patients(id),
+  INDEX idx_appt_time (appointment_time),
+  INDEX idx_appt_doctor_time (doctor_id, appointment_time)
+);
+
+CREATE TABLE prescriptions (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  appointment_id BIGINT NOT NULL,
+  medicine VARCHAR(200) NOT NULL,
+  dosage VARCHAR(100),
+  instructions VARCHAR(500),
+  FOREIGN KEY (appointment_id) REFERENCES appointments(id)
+);
